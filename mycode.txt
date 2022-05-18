@@ -1,0 +1,49 @@
+int myout1=32;
+int myout2=4;
+int myout3=14;
+int bell=5;
+int red=13;
+int yellow=25;
+int green=23;
+void setup(){
+  pinMode(myout1,INPUT);
+  pinMode(myout2,INPUT);
+  pinMode(myout3,INPUT);
+  pinMode(bell,OUTPUT);
+  pinMode(red,OUTPUT);
+  pinMode(yellow,OUTPUT);
+  pinMode(green,OUTPUT);
+  Serial.begin(9600);
+  }
+  
+void loop(){
+  float temp1=analogRead(myout1);
+  temp1=temp1*0.473372781065088;
+  float temp2=analogRead(myout2);
+  temp2=temp2 *0.473372781065088;
+  float temp3=analogRead(myout3);
+  temp3=temp3 *0.473372781065088;
+  int temp=(temp1+temp2+temp3)/3;
+  Serial.println(temp);
+  if(temp>100){
+    digitalWrite(bell,HIGH);
+    delay(1000);
+    digitalWrite(bell,LOW);
+  }
+  else if(temp>90){
+    digitalWrite(red,HIGH);
+    delay(1000);
+    digitalWrite(red,LOW);
+  }
+  else if(temp>80){
+    digitalWrite(yellow,HIGH);
+    delay(1000);
+    digitalWrite(yellow,LOW);
+  }
+  else{
+    digitalWrite(green,HIGH);
+    delay(1000);
+    digitalWrite(green,LOW);
+  }
+  delay(1000);
+}
