@@ -1,3 +1,5 @@
+//initializing variables with their pins
+
 int myout1=32;
 int myout2=4;
 int myout3=14;
@@ -5,7 +7,11 @@ int bell=5;
 int red=13;
 int yellow=25;
 int green=23;
+
 void setup(){
+  
+  //Declaring if they input or output data
+  
   pinMode(myout1,INPUT);
   pinMode(myout2,INPUT);
   pinMode(myout3,INPUT);
@@ -17,14 +23,24 @@ void setup(){
   }
   
 void loop(){
-  float temp1=analogRead(myout1);
+  
+  //Reading temp from temp sensor1
+  float temp1=analogRead(myout1);  
   temp1=temp1*0.473372781065088;
+  
+  //Reading temp from temp sensor2
   float temp2=analogRead(myout2);
   temp2=temp2 *0.473372781065088;
+  
+  //Reading temp from temp sensor3
   float temp3=analogRead(myout3);
   temp3=temp3 *0.473372781065088;
+  
+  //Calculating mean
   int temp=(temp1+temp2+temp3)/3;
+  
   Serial.println(temp);
+  
   if(temp>100){
     digitalWrite(bell,HIGH);
     delay(1000);
